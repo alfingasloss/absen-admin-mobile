@@ -58,7 +58,7 @@ class MemberListScreen extends StatelessWidget {
               child: Table(
                 border: TableBorder.all(),
                 columnWidths: const {
-                  0: FixedColumnWidth(40.0),
+                  0: FixedColumnWidth(50.0),
                   1: FixedColumnWidth(120.0), // Lebar kolom nama disesuaikan
                   2: FixedColumnWidth(100.0),
                 },
