@@ -54,64 +54,26 @@ class MemberListScreen extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: SingleChildScrollView(
-              child: Table(
-                border: TableBorder.all(),
-                columnWidths: const {
-                  0: FixedColumnWidth(50.0),
-                  1: FixedColumnWidth(120.0), // Lebar kolom nama disesuaikan
-                  2: FixedColumnWidth(100.0),
-                },
-                children: [
-                  TableRow(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text('No', textAlign: TextAlign.center),
+            child: ListView.builder(
+              itemCount: members.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: ListTile(
+                    leading: Text('${index + 1}'),
+                    title: Text(members[index]['nama']!),
+                    trailing: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green[300], // Background color
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text('Nama', textAlign: TextAlign.center),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text('Lokasi', textAlign: TextAlign.center),
-                      ),
-                    ],
-                  ),
-                  for (int index = 0; index < members.length; index++)
-                    TableRow(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Text('${index + 1}', textAlign: TextAlign.center),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Text(
-                            members[index]['nama']!,
-                            textAlign: TextAlign.left,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Center( // Mengatur teks agar rata tengah
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.green[300],
-                                padding: EdgeInsets.symmetric(horizontal: 12), // Padding horizontal
-                              ),
-                              onPressed: () {
-                                // Aksi Lacak bisa ditambahkan di sini
-                              },
-                              child: Text(members[index]['lokasi']!),
-                            ),
-                          ),
-                        ),
-                      ],
+                      onPressed: () {
+                        // Aksi Lacak bisa ditambahkan disini
+                      },
+                      child: Text(members[index]['lokasi']!),
                     ),
-                ],
-              ),
+                  ),
+                );
+              },
             ),
           ),
           Padding(
